@@ -2,5 +2,5 @@ menu_items:
   default: ""
   type: list
   description:
-    en: "label~~title~~href~~src~~key"
+    en: "label~~title~~href~~img_src~~parent_key"
 mobile_menu_label: Explore
