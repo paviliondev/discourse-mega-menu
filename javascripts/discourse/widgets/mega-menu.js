@@ -36,14 +36,16 @@ export default createWidget('mega-menu', {
       })
       
       let labelParts = parts[0].split(':');
-      let label = labelParts[0];
-      let key = labelParts[1] || label.underscore();
+      let order = labelParts[0];
+      let label = labelParts[1];
+      let key = labelParts[2] || label.underscore();
       let title = parts[1];
       let href = parts[2];
       let src = parts[3];
       let parent = parts[4];
       
       return {
+        order,
         label,
         key,
         title,
@@ -75,6 +77,8 @@ export default createWidget('mega-menu', {
     itemList.forEach(primaryItem => {
       primaryItem.subItems = this.buildSubItemList(primaryItem.key, items);
     });
+    
+    itemList.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
         
     return itemList;
   },
@@ -88,6 +92,7 @@ export default createWidget('mega-menu', {
       if (item.parent == key) {
         items.splice(i, 1);
         item.subItems = this.buildSubItemList(item.key, items);
+        item.subItems.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
         subItems.push(item);
       }
     }

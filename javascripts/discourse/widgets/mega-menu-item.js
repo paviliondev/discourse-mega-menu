@@ -27,9 +27,11 @@ export default createWidget('mega-menu-item', {
     let contents = [];
     let elementContents = [ h('span', attrs.label) ];
     
-    let attributes = {
-      title: attrs.title
-    };
+    let attributes = {};
+    
+    if (attrs.title) {
+      attributes['title'] = attrs.title;
+    }
     
     if (attrs.href) {
       attributes['href'] = attrs.href;
