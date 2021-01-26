@@ -1,0 +1,5 @@
+menu_items:
+  default: ""
+  type: list
+  description:
+    en: "label~~title~~href~~src~~key"
