@@ -1,0 +1,29 @@
+.mega-menu-contents {
+  background-color: $secondary;
+  display: none;
+  position: fixed;
+  top: calc(3.66em + 1px);
+  width: 100vw;
+  left: 0;
+  flex-direction: column;
+}
+
+.mobile-toggle.show .mega-menu-contents {
+  display: flex;
+  
+  .primary-mega-menu-item {
+    height: unset;
+    width: 100%;
+    padding: 1em;
+    border-bottom: 1px solid $primary-medium;
+    
+    .mega-menu-item-element.primary {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  
+  .mega-menu-item {
+    width: 100%;
+  }
+}

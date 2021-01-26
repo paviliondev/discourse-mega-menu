@@ -1,12 +1,20 @@
 import { createWidget } from 'discourse/widgets/widget';
+import { iconNode } from "discourse-common/lib/icon-library";
 import { h } from "virtual-dom";
 
 export default createWidget('mega-menu', {
   tagName: 'div.mega-menu',
+  buildKey: (attrs) => 'mega-menu',
+  
+  defaultState(attrs) {
+    return {
+      menuVisible: !this.site.mobileView
+    }
+  },
   
   html(attrs, state) {
     const contents = [];
-    const menuItems = this.buildItemList(); 
+    const menuItems = this.buildItemList();
     
     menuItems.forEach(item => {
       if (item.primary) {
@@ -17,8 +25,22 @@ export default createWidget('mega-menu', {
         );
       }
     });
-    
-    return h('ul.mega-menu-contents', contents);
+        
+    if (this.site.mobileView) {
+      let className = 'mobile-toggle';
+      
+      if (state.menuVisible) {
+        className += '.show';
+      }
+      
+      return h(`div.${className}`, [
+        h('span', settings.mobile_menu_label),
+        iconNode("chevron-down"),
+        h('ul.mega-menu-contents', contents)
+      ]);
+    } else {
+      return h('ul.mega-menu-contents', contents)
+    }
   },
   
   buildItemList() {
@@ -92,11 +114,26 @@ export default createWidget('mega-menu', {
       if (item.parent == key) {
         items.splice(i, 1);
         item.subItems = this.buildSubItemList(item.key, items);
-        item.subItems.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
         subItems.push(item);
       }
     }
     
+    subItems.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
+    
     return subItems;
+  },
+  
+  toggleMobileMenu(event) {
+    console.log(event)
+    this.state.menuVisible = true;
+    this.scheduleRerender();
+  },
+  
+  click(e) {
+    if (this.site.mobileView) {
+      console.log($(e.target).closest(".mega-menu").length)
+      this.state.menuVisible = !!$(e.target).closest(".mega-menu").length;
+      this.scheduleRerender();
+    }
   }
 });

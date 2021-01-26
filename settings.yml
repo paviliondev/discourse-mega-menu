@@ -3,3 +3,4 @@ menu_items:
   type: list
   description:
     en: "label~~title~~href~~src~~key"
+mobile_menu_label: Explore
