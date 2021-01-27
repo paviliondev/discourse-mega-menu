@@ -27,15 +27,17 @@ export default createWidget('mega-menu', {
     });
         
     if (this.site.mobileView) {
-      let className = 'mobile-toggle';
+      let className = 'mobile-wrapper';
       
       if (state.menuVisible) {
         className += '.show';
       }
       
       return h(`div.${className}`, [
-        h('span', settings.mobile_menu_label),
-        iconNode("chevron-down"),
+        h('div.mobile-toggle', [
+          h('span', settings.mobile_menu_label),
+          iconNode("chevron-down"),
+        ]),
         h('ul.mega-menu-contents', contents)
       ]);
     } else {
@@ -123,16 +125,16 @@ export default createWidget('mega-menu', {
     return subItems;
   },
   
-  toggleMobileMenu(event) {
-    console.log(event)
-    this.state.menuVisible = true;
-    this.scheduleRerender();
+  click(e) {
+    if (this.site.mobileView && e.target.closest(".mobile-toggle")) {
+      this.state.menuVisible = !this.state.menuVisible;
+      this.scheduleRerender();
+    }
   },
   
-  click(e) {
+  clickOutside(e) {
     if (this.site.mobileView) {
-      console.log($(e.target).closest(".mega-menu").length)
-      this.state.menuVisible = !!$(e.target).closest(".mega-menu").length;
+      this.state.menuVisible = false;
       this.scheduleRerender();
     }
   }

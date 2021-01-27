@@ -74,18 +74,31 @@ export default createWidget('mega-menu-item', {
   },
   
   mouseOver(event) {
-    if (this.attrs.primary) {
+    if (this.mouseEvents()) {
       this.state.showItems = true;
       this.scheduleRerender();
     }
   },
   
   mouseOut(event) {
-    if (this.attrs.primary &&
-        !$(event.relatedTarget)
-          .closest(`.mega-menu-item.${this.attrs.key}`).length) {
+    if (this.mouseEvents() && !this.targetInMenu(event.relatedTarget)) {
       this.state.showItems = false;
       this.scheduleRerender();
     }
+  },
+  
+  click(event) {
+    if (this.targetInMenu(event.target)) {
+      this.state.showItems = !this.state.showItems;
+      this.scheduleRerender();
+    }
+  },
+  
+  mouseEvents() {
+    return !this.site.mobileView && this.attrs.primary;
+  },
+  
+  targetInMenu(target) {
+    return $(target).closest(`.mega-menu-item.${this.attrs.key}`).length;
   }
 });
