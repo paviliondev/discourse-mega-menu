@@ -4,3 +4,11 @@ menu_items:
   description:
     en: "label~~title~~href~~img_src~~parent_key"
 mobile_menu_label: Explore
+on_topic_scroll:
+  default: "hide"
+  type: enum
+  choices:
+    - hide
+    - show
+  description:
+    en: "Behaviour on scroll in a topic"

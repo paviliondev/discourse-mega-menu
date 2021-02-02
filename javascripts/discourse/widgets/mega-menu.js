@@ -48,7 +48,7 @@ export default createWidget('mega-menu', {
   buildItemList() {
     let items = settings.menu_items.split('|');
     
-    items = items.map(item => {
+    items = items.reduce((result, item) => {
       let parts = item.split('~~');
       
       parts = parts.map(p => {
@@ -62,22 +62,26 @@ export default createWidget('mega-menu', {
       let labelParts = parts[0].split(':');
       let order = labelParts[0];
       let label = labelParts[1];
-      let key = labelParts[2] || label.underscore();
+      let key = labelParts[2] || (label ? label.underscore() : null);
       let title = parts[1];
       let href = parts[2];
       let src = parts[3];
       let parent = parts[4];
       
-      return {
-        order,
-        label,
-        key,
-        title,
-        href,
-        src,
-        parent
+      if (label && key) {
+        result.push({
+          order,
+          label,
+          key,
+          title,
+          href,
+          src,
+          parent
+        });
       }
-    });
+      
+      return result;
+    }, []);
     
     let itemList = [];
     
