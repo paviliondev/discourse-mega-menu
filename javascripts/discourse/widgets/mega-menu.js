@@ -68,7 +68,7 @@ export default createWidget('mega-menu', {
       let src = parts[3];
       let parent = parts[4];
       
-      if (label && key) {
+      if (key) {
         result.push({
           order,
           label,
