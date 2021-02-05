@@ -11,6 +11,14 @@ export default {
         }
       });
       
+      api.reopenWidget('home-logo', {
+        smallLogoUrl(opts = {}) {
+          return settings.on_topic_scroll == 'show' ? 
+            this.logoResolver("logo", opts) :
+            this._super(opts);
+        }
+      });
+      
       api.modifyClass('component:site-header', {
         buildArgs() {
           return $.extend({}, this._super(), {
