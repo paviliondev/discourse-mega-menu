@@ -116,7 +116,7 @@ export default createWidget('mega-menu', {
     
     for (let i = items.length - 1; i >= 0; i--) {
       let item = items[i];
-      
+      console.log(items, item);
       if (item.parent == key) {
         items.splice(i, 1);
         item.subItems = this.buildSubItemList(item.key, items);
