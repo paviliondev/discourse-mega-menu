@@ -94,7 +94,7 @@ export default createWidget('mega-menu', {
         item.primary = true;
         item.key = item.key.substring(0, item.key.length - 1);
         
-        if (item.label.slice(-1) == '^') {
+        if (item.label && item.label.slice(-1) == '^') {
           item.label = item.label.substring(0, item.label.length - 1);
         }
         
