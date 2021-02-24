@@ -1,5 +1,5 @@
 .mega-menu {
-  margin-left: 2em;
+  margin-left: 1em;
   height: 100%;
   display: flex;
   align-items: center;
@@ -70,7 +70,6 @@
     width: calc(100% - 16px);
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
   }
   
   li {
@@ -79,6 +78,7 @@
     position: relative;
     transform: translateY(-5%);
     transition: all .1s ease-in .05s;
+    margin-right: 3em;
     
     &:last-of-type {
       padding-right: 0;
@@ -103,6 +103,7 @@
 .mega-menu .mega-menu-item-element {
   position: relative;
   display: flex;
+  font-size: 1.1em;
   
   &.primary {
     align-items: center;
@@ -126,11 +127,12 @@
     span {
       color: $secondary;
       z-index: 3;
+      font-size: 1.3em;
     }
   }
   
   .mega-overlay {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.4);
     height: 100%;
     width: 100%;
     position: absolute;
