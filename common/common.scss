@@ -48,7 +48,8 @@
   background-color: $secondary;
   align-items: center;
   justify-content: center;
-  
+  box-shadow: shadow("header");
+
   &:before {
     backface-visibility: hidden;
     background-color: white;
