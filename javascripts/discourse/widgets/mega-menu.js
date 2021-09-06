@@ -34,7 +34,7 @@ export default createWidget('mega-menu', {
       }
       
       return h(`div.${className}`, [
-        h('div.mobile-toggle', [
+        h('div.mega-mobile-toggle', [
           h('span', settings.mobile_menu_label),
           iconNode("chevron-down"),
         ]),
@@ -130,7 +130,7 @@ export default createWidget('mega-menu', {
   },
   
   click(e) {
-    if (this.site.mobileView && e.target.closest(".mobile-toggle")) {
+    if (this.site.mobileView && e.target.closest(".mega-mobile-toggle")) {
       this.state.menuVisible = !this.state.menuVisible;
       this.scheduleRerender();
     }
