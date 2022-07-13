@@ -20,6 +20,7 @@ export default {
       });
       
       api.modifyClass('component:site-header', {
+        pluginId: 'discourse-mega-menu',
         buildArgs() {
           return $.extend({}, this._super(), {
             showHeaderTopicInfo: !!this._topic && settings.on_topic_scroll == 'hide'
